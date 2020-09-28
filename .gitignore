@@ -41,3 +41,7 @@ vignettes/*.pdf
 # Rproj files
 *.Rproj
 .Rproj.user
+
+# Downloaded test files
+test*.geojson
+
