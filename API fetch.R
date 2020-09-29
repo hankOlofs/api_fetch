@@ -1,37 +1,62 @@
-# install.packages("httr")
-library(httr)
-
-# install.packages("jsonlite")
-library(jsonlite)
-
-# install.packages("XML")
-library(XML)
-
-# install.packages("geojsonio")
-library(geojsonio)
-
-#install.packages("geojsonR")
-library(geojsonR)
-
-# install.packages("RCurl")
-library(RCurl)
-
-library(sp)
-
-#https://ropensci.org/blog/2013/10/23/style-geojson-polygon/
-
-date <- "1980-09-28"
-url <- paste0("http://api.thenmap.net/v2/world-2/geo/", date)
-download.file(url = url, "test.geojson", replace = TRUE)
-
-# file_fetch <- getURL(url)
-# as_json <- toJSON(file_fetch)
+# # install.packages("httr")
+# library(httr)
 # 
-# map_data2 <- geojson_list(as_json)
-# map_data <- fromJSON(url)
+# # install.packages("jsonlite")
+# library(jsonlite)
+# 
+# # install.packages("XML")
+# library(XML)
+# 
+# # install.packages("geojsonio")
+# library(geojsonio)
+# 
+# #install.packages("geojsonR")
+# library(geojsonR)
+# 
+# # install.packages("RCurl")
+# library(RCurl)
+# 
+# library(sp)
 
-# map_data3 <- geojson_json(map_data, type = "FeatureCollection")
+## actually needed ones
+library(geojsonio)
+library(ggplot2)
 
-map_data <- geojson_read("test.geojson", what = "sp")
+# https://ropensci.org/blog/2013/10/23/style-geojson-polygon/
 
-plot(map_data, col="light blue")
+fetch <- function(date_str = "2000-01-01", ...) {
+  date <- as.Date(date_str)
+  notes <- "" # pass a note if the date is missing
+  
+  # function to fetch data
+  fetch_data <- function(date) {
+    url <- paste0("http://api.thenmap.net/v2/world-2/geo/", date)
+    fetched_data <- geojson_sf(url)
+    return(fetched_data)
+  }
+  
+  # actually fetching the data
+  fetched_data <- fetch_data(date)
+  
+  # a nearly empty string should trigger a search for the next available date
+  cond <- function(fd) {
+    object.size(fd) < 1000
+  }
+  
+  if (cond(fetched_data)) {
+    while (cond(fetched_data)) {
+      date <-  date + 1
+      fetched_data <- fetch_data(date)
+    }
+    notes <-
+      paste(
+        "The data was not available for the selected date. Data fetched for next available date instead:",
+        date
+      )
+  }
+  
+  # returning a list with the current geojson file and a note
+  # might make map_geojson a list of every fetched piece of data to preserve and speed up old queries
+  # (although that will start using too much space - perhaps the last 20 or something)
+  return(list("data" = fetched_data, "notes" = notes))
+}
