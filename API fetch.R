@@ -20,7 +20,7 @@ library(sp)
 
 #https://ropensci.org/blog/2013/10/23/style-geojson-polygon/
 
-date <- "1990-09-28"
+date <- "1980-09-28"
 url <- paste0("http://api.thenmap.net/v2/world-2/geo/", date)
 download.file(url = url, "test.geojson", replace = TRUE)
 
@@ -34,4 +34,4 @@ download.file(url = url, "test.geojson", replace = TRUE)
 
 map_data <- geojson_read("test.geojson", what = "sp")
 
-plot(map_data)
+plot(map_data, col="light blue")
