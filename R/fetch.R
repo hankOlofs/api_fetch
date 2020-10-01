@@ -18,7 +18,7 @@ function(date_str = "2000-01-01", ...) {
   # function to fetch data
   fetch_data <- function(date) {
     url <- paste0("http://api.thenmap.net/v2/world-2/geo/", date)
-    fetched_data <- geojson_sf(url)
+    fetched_data <- geojsonio::geojson_sf(url)
     return(fetched_data)
   }
   
