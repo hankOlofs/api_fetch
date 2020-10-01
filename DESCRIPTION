@@ -1,9 +1,25 @@
 Package: apiFetch
 Type: Package
-Title: What the package does (short line)
+Title: Fetches geojson data from thenmaps.net
 Version: 1.0
 Date: 2020-10-01
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: c(person("Sofie", "Jörgensen", 
+                    role = c("aut", "cre"), 
+                    email = "sofjo281@student.liu.se"), 
+            person("Henrik", "Olofsson", 
+                    role = "aut", 
+                    email = "henol528@student.liu.se"))
+Author: Sofie Jörgensen,
+        Henrik Olofsson
+Maintainer: Sofie Jörgensen <sofjo281@student.liu.se>, 
+            Henrik Olofsson <henol528@student.liu.se>
+Description: A simple package responsible for fetching world geography data from thenmaps.net.
+License: GPL-3
+Encoding: UTF-8
+Depends: R (>= 4.0.0)
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown,
+    usethis,
+Imports: library(geojsonio)

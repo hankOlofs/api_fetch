@@ -1,3 +1,13 @@
+#' API fetch function
+#'
+#' @param date_str 
+#' @param ... 
+#'
+#' @return Returns a list with the data as well as a note if there was no data the specified date.
+#' @export
+#'
+#' @examples
+#' fetch("2000-01-01")
 fetch <-
 function(date_str = "2000-01-01", ...) {
   date <- as.Date(date_str)
