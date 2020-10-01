@@ -22,4 +22,5 @@ Suggests:
     knitr,
     rmarkdown,
     usethis,
-Imports: library(geojsonio)
+    geojsonio
+RoxygenNote: 7.1.1

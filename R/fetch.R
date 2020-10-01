@@ -1,7 +1,7 @@
 #' API fetch function
 #'
-#' @param date_str 
-#' @param ... 
+#' @param date_str a date string expressed as "yyyy-mm-dd"
+#' @param ... optional parameters
 #'
 #' @return Returns a list with the data as well as a note if there was no data the specified date.
 #' @export
@@ -16,7 +16,7 @@ function(date_str = "2000-01-01", ...) {
   # function to fetch data
   fetch_data <- function(date) {
     url <- paste0("http://api.thenmap.net/v2/world-2/geo/", date)
-    fetched_data <- geojson_sf(url)
+    fetched_data <- geojsonio::geojson_sf(url)
     return(fetched_data)
   }
   
@@ -25,13 +25,14 @@ function(date_str = "2000-01-01", ...) {
   
   # a nearly empty string should trigger a search for the next available date
   cond <- function(fd) {
-    object.size(fd) < 1000
+    utils::object.size(fd) < 100
   }
   
   if (cond(fetched_data)) {
     while (cond(fetched_data)) {
       date <-  date + 1
       fetched_data <- fetch_data(date)
+      # add something to make the loop always end
     }
     notes <-
       paste(
