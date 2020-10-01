@@ -4,7 +4,9 @@
 #' @param ... optional parameters
 #'
 #' @return Returns a list with the data as well as a note if there was no data the specified date.
-#' @export
+#' @export 
+#' 
+#' @importFrom geojsonio geojson_sf
 #'
 #' @examples
 #' fetch("2000-01-01")
@@ -16,7 +18,7 @@ function(date_str = "2000-01-01", ...) {
   # function to fetch data
   fetch_data <- function(date) {
     url <- paste0("http://api.thenmap.net/v2/world-2/geo/", date)
-    fetched_data <- geojsonio::geojson_sf(url)
+    fetched_data <- geojson_sf(url)
     return(fetched_data)
   }
   
