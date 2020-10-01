@@ -60,3 +60,4 @@ fetch <- function(date_str = "2000-01-01", ...) {
   # (although that will start using too much space - perhaps the last 20 or something)
   return(list("data" = fetched_data, "notes" = notes))
 }
+
