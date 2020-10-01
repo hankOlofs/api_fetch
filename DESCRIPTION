@@ -21,6 +21,6 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    usethis
-Imports: geojsonio (>= 0.9.0)
+    usethis,
+Imports: geojsonio (>= 0.9.0), jqr (>= 0.1.0)
 RoxygenNote: 7.1.1
