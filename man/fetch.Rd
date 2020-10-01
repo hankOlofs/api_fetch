@@ -2,7 +2,7 @@
 % Please edit documentation in R/fetch.R
 \name{fetch}
 \alias{fetch}
-\title{API fetch function}
+\title{fetch}
 \usage{
 fetch(date_str = "2000-01-01", ...)
 }
