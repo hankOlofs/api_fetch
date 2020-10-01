@@ -1,4 +1,6 @@
-#' API fetch function
+#' fetch
+#' 
+#' @description API fetch function
 #'
 #' @param date_str a date string expressed as "yyyy-mm-dd"
 #' @param ... optional parameters
