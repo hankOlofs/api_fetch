@@ -45,3 +45,4 @@ vignettes/*.pdf
 # Downloaded test files
 test*.geojson
 
+inst/doc

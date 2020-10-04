@@ -45,6 +45,10 @@ function(date_str = "2000-01-01", ...) {
       )
   }
   
+  if (notes == "") {
+    notes <- "Nothing to note."
+  }
+  
   # returning a list with the current geojson file and a note
   # might make map_geojson a list of every fetched piece of data to preserve and speed up old queries
   # (although that will start using too much space - perhaps the last 20 or something)

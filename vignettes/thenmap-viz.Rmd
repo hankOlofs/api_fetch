@@ -1,0 +1,35 @@
+---
+title: "An API fetch package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{thenmap-viz}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library("apiFetch")
+```
+
+The `apiFetch` package contains an API fetch function for accessing data from the Thenmap API https://www.thenmap.net. Thenmap is a repository for national borders. In this vignette, we will present the functionality of the `fetch()` function and visualize the borders using the Shiny Application `thenmap_viz`. 
+
+
+Let us say that we are interested in data from 1906-01-20. To obtain a list with the data we call the function `fetch()`:
+
+```{r}
+fetch("1906-01-20")
+```
+
+Now we are going to demonstrate an application of the `apiFetch` package. Historical as well as current borders can easily be visualized by using the Shiny Application `thenmap_viz`. We select the dates 1906-01-20 and 2020-09-01, one at a time, in the Date widget.
+
+```{r}
+# Shiny stuff
+```
