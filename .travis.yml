@@ -1,8 +1,4 @@
 language: r
+r_packages: jqr
 cache: packages
 
-matrix:
-  include:
-    - dist: xenial
-      env: R_CODECOV=true
-      r_github_packages: ropensci/jqr
