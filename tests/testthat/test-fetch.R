@@ -1,17 +1,26 @@
-# test_that("multiplication works", {
-#   expect_equal(2 * 2, 4)
-# })
-# 
-# test_that("input string is correct", {
-#   is.character(fetch(date_str))
-# })
+context("apiFetch")
 
 test_that("Wrong input throws an error.", {
-  expect_error(fetch("2000-02-99"))
-  expect_error(fetch("01-01-2000"))
-  expect_error(fetch("2005-2020"))
-  expect_error(fetch("20000110"))
-  expect_error(fetch("0000-00-00"))
-  expect_error(fetch("Hello"))
-  expect_error(fetch(2000-01-01))
+  expect_error(fetch(date_str = "2000-02-99"))
+  expect_error(fetch(date_str = "01-01-2000"))
+  expect_error(fetch(date_str = "2005-2020"))
+  expect_error(fetch(date_str = "20000110"))
+  expect_error(fetch(date_str = "0000-00-00"))
+  expect_error(fetch(date_str = "Hello"))
+  expect_error(fetch(date_str = 2000-01-01))
+  expect_error(fetch(url = 2))
+  expect_error(fetch(url = "10.4.2.5.6.2"))
+  expect_error(fetch(contains_date = "character input"))
+})
+
+test_that("Strange URL gives warnings.", {
+  expect_error(fetch(url = ":https://10.5. 1.6"))
+})
+
+test_that("Output is proper.", {
+  expect_output(print(fetch()[1]), "\\$data\\nSimple( )feature( )collection( )with( )", all = FALSE, fixed = FALSE)
+})
+
+test_that("Output is list.", {
+  expect_type(fetch(), "list")
 })

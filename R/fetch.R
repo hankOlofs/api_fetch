@@ -21,11 +21,11 @@ fetch <- function(date_str = as.character(Sys.Date()), url = "http://api.thenmap
   # block of input checks
   stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = is.character(date_str))
   stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = nchar(date_str) == 10)
-  stopifnot("Error, url must be a character string." = is.character(url))
+  stopifnot("Error, check format and contents of date_str (yyyy-MM-dd)." = class(try(as.Date(date_str), silent = TRUE)) == "Date")
+  stopifnot("Error, check format and contents of date_str (yyyy-MM-dd)." = grepl("....-..-..", date_str, fixed = FALSE))
+  stopifnot("Error, URL must be a character string." = is.character(url))
+  stopifnot("The URL provided does not have the correct format" = grepl(".*tp.?://.*\\..*/.*", url, fixed = FALSE))
   stopifnot("Error, contains_date must be boolean." = is.logical(contains_date))
-  stopifnot("Error, date_str input seems to have an error. Check format and contents of string (yyyy-MM-dd)." = class(try(as.Date(date_str), silent = TRUE)) == "Date")
-  stopifnot("Error, date_str input seems to have an error. Check format and contents of string (yyyy-MM-dd)." = grepl("....-..-..", date_str, fixed = FALSE))
-  
   
   # checking if user really wants to use a different API than intended
   if (!grepl("api.thenmap.net", url, fixed = TRUE)) {
@@ -33,7 +33,7 @@ fetch <- function(date_str = as.character(Sys.Date()), url = "http://api.thenmap
       "You seem to have chosen a non-standard url. This API has not been tested for API's outside of thenmap.net's API."
     )
     c <- readline(prompt = "Continue (Y/N)?")
-    if (all((c != "Y"), (c != "y"))) {
+    if (all((c != "Y"), (c != "y"), (c != "yes"), (c != "Yes"))) {
       stop("Attempt to fetch data from non-standard API stopped.")
     } else {
       print(paste("All right, continuing with", url))
@@ -61,6 +61,15 @@ fetch <- function(date_str = as.character(Sys.Date()), url = "http://api.thenmap
   
   # calling fo he url to be constructed
   url <- urler(url = url, date = date, contains_date = contains_date)
+  
+  # part of unit testing for correct url structure
+  url_check <- c(
+    #grepl(":http*://*.*/*", url, fixed = FALSE),
+    grepl("\\s", url, fixed = FALSE),
+    grepl(".*:http.*", url, fixed = FALSE)
+  )
+
+  stopifnot("The URL does not seem to be proper:" = !all(url_check))
   
   # function to fetch data and convert to a simple features object
   fetch_data <- function(url) {
