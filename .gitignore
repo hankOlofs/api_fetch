@@ -46,3 +46,5 @@ vignettes/*.pdf
 test*.geojson
 
 inst/doc
+doc
+Meta
