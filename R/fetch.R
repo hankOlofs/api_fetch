@@ -19,8 +19,8 @@
 fetch <- function(date_str = as.character(Sys.Date()), url = "http://api.thenmap.net/v2/world-2/geo/", contains_date = TRUE) {
   
   # block of input checks
-  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = is.character(date_str))
-  # stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = nchar(date_str) == 10)
+  # stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = is.character(date_str))
+  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = nchar(date_str) == 10)
   stopifnot("Error, check format and contents of date_str (yyyy-MM-dd)." = class(try(as.Date(date_str), silent = TRUE)) == "Date")
   stopifnot("Error, check format of date_str (yyyy-MM-dd)." = grepl("....-..-..", date_str, fixed = FALSE))
   stopifnot("Error, URL must be a character string." = is.character(url))
