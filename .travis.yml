@@ -5,5 +5,11 @@ addons:
   apt: 
     sources: 
       - sourceline: 'ppa:opencpu/jq' 
+      - sourceline: 'ppa:ubuntugis/ppa'
     packages: 
-      - libjq-dev 
+      - libjq-dev
+      - protobuf-compiler
+      - libprotobuf-dev
+      - libprotoc-dev
+      - libgdal-dev
+      - libudunits2-dev
