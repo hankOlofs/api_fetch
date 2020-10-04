@@ -16,7 +16,8 @@
 #' 
 # if no date is specified, use today's date
 fetch <- function(date_str = as.character(Sys.Date()), url = "http://api.thenmap.net/v2/world-2/geo/", contains_date = TRUE) {
-  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd." = is.character(date_str))
+  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = is.character(date_str))
+  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = nchar(date_str) == 10 )
   stopifnot("Error, url must be a character string." = is.character(url))
   stopifnot("Error, contains_date must be boolean." = is.logical(contains_date))
   
