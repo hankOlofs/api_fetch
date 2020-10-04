@@ -23,6 +23,6 @@ Suggests:
     rmarkdown,
     usethis,
     utils
-Imports: geojsonio (>= 0.9.0), jsonlite (>= 1.0)
+Imports: geojsonio (>= 0.9.0)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
