@@ -1,6 +1,6 @@
 Package: apiFetch
 Type: Package
-Title: Fetches geojson data from thenmaps.net
+Title: Fetches geojson data from thenmap.net
 Version: 1.0
 Date: 2020-10-01
 Authors@R: c(person("Sofie", "Jörgensen", 
