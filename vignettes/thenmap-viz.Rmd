@@ -19,17 +19,22 @@ knitr::opts_chunk$set(
 library("apiFetch")
 ```
 
-The `apiFetch` package contains an API fetch function for accessing data from the Thenmap API https://www.thenmap.net. Thenmap is a repository for national borders. In this vignette, we will present the functionality of the `fetch()` function and visualize the borders using the Shiny Application `thenmap_viz`. 
+The `apiFetch` package contains an API fetch function for accessing data from the Thenmap API https://www.thenmap.net. Thenmap is a repository for national borders. In this vignette, we will present the functionality of the `fetch()` function and visualize the borders using the Shiny Application `thenmap_viz`.
 
+# apiFetch
+Via the API, geojson data can be downloaded. The geojson object fetched from the API is converted to a simple features (sf) object. Simply calling `fetch()` will fetch current national borders.
 
-Let us say that we are interested in data from 1906-01-20. To obtain a list with the data we call the function `fetch()`:
-
+Let us say that we are interested in data from 1906-01-20. To obtain a list with the data we call the function `fetch()`. As a default print method, the first ten objects are displayed.
 ```{r}
-fetch("1906-01-20")
+fetch(date_str = "1906-01-20")
 ```
 
-Now we are going to demonstrate an application of the `apiFetch` package. Historical as well as current borders can easily be visualized by using the Shiny Application `thenmap_viz`. We select the dates 1906-01-20 and 2020-09-01, one at a time, in the Date widget.
+Data can also be fetched from other url's, e.g. the Swedish counties:
+```{r}
+fetch(url = "http://api.thenmap.net/v2/se-4/geo/")
+```
+Now we are going to demonstrate an application of the `apiFetch` package. Historical as well as current borders can easily be visualized by using the Shiny application `thenmap_viz`. We select the dates 1906-01-20 and 2020-09-01, one at a time, in the Date widget.
 
 ```{r}
-# Shiny stuff
+shiny::runGitHub("sofiejorgensen/thenmap_viz", subdir = "thenmap_viz")
 ```

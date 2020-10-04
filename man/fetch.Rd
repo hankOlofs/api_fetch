@@ -4,12 +4,18 @@
 \alias{fetch}
 \title{fetch}
 \usage{
-fetch(date_str = "2000-01-01", ...)
+fetch(
+  date_str = as.character(Sys.Date()),
+  url = "http://api.thenmap.net/v2/world-2/geo/",
+  contains_date = TRUE
+)
 }
 \arguments{
-\item{date_str}{a date string expressed as "yyyy-mm-dd"}
+\item{date_str}{a date string expressed as "yyyy-mm-dd". if contains_date is set to FALSE, this should be left blank}
 
-\item{...}{optional parameters}
+\item{url}{a url pointing to a geojson file}
+
+\item{contains_date}{a boolean indicating whether or not to include the date_str at the end of the url}
 }
 \value{
 Returns a list with the data as well as a note if there was no data the specified date.
@@ -19,4 +25,5 @@ API fetch function
 }
 \examples{
 fetch("2000-01-01")
+
 }
