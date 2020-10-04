@@ -1,2 +1,4 @@
 language: r
 cache: packages
+ global:
+   - _R_CHECK_FORCE_SUGGESTS_: false
