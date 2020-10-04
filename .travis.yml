@@ -13,3 +13,4 @@ addons:
       - libprotoc-dev
       - libgdal-dev
       - libudunits2-dev
+      - libv8-dev
