@@ -20,10 +20,12 @@ fetch <- function(date_str = as.character(Sys.Date()), url = "http://api.thenmap
   
   # block of input checks
   stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = is.character(date_str))
-  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = nchar(date_str) == 10 )
+  stopifnot("Error, date_str must be a character string on the form yyyy-MM-dd or blank." = nchar(date_str) == 10)
   stopifnot("Error, url must be a character string." = is.character(url))
   stopifnot("Error, contains_date must be boolean." = is.logical(contains_date))
-  stopifnot("Error, date_str input seems to be misspelled" = class(try(as.Date(date_str), silent = TRUE)) == "Date")
+  stopifnot("Error, date_str input seems to have an error. Check format and contents of string (yyyy-MM-dd)." = class(try(as.Date(date_str), silent = TRUE)) == "Date")
+  stopifnot("Error, date_str input seems to have an error. Check format and contents of string (yyyy-MM-dd)." = grepl("....-..-..", date_str, fixed = FALSE))
+  
   
   # checking if user really wants to use a different API than intended
   if (!grepl("api.thenmap.net", url, fixed = TRUE)) {
