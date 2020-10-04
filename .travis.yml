@@ -1,11 +1,9 @@
 language: r
+cache: packages
+
 addons: 
   apt: 
     sources: 
       - sourceline: 'ppa:opencpu/jq' 
     packages: 
       - libjq-dev 
-
-r_packages: jqr
-cache: packages
-
