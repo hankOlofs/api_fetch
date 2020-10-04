@@ -3,9 +3,6 @@ cache: packages
 
 matrix:
   include:
-    - dist: trusty
-      r: oldrel
-      r_github_packages: ropensci/jqr
     - dist: xenial
       env: R_CODECOV=true
       r_github_packages: ropensci/jqr
